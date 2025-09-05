@@ -1,0 +1,75 @@
+# Ticketazo — Cypress E2E Automation
+
+Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema **Ticketazo**, desarrolladas con **Cypress** como parte del Challenge de QA.
+
+## 🎯 Objetivo
+- Practicar la elaboración de planes de prueba.
+- Automatizar casos funcionales críticos con Cypress.
+- Aplicar buenas prácticas de reporte de defectos (Trello).
+
+---
+
+## 🌐 Entornos
+- **QA (principal para pruebas):** https://vps-3696213-x.dattaweb.com/  
+- **Producción (misma data que QA):** https://ticketazo.com.ar  
+
+---
+
+## 🛠️ Requisitos
+- Node.js 18+  
+- npm 9+  
+- Cypress 13+  
+
+---
+
+## 📦 Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/Martina-Sansone/Proyecto-ticketazo-QA.git
+
+cd "Challengue TICKETAZO"
+
+# Instalar dependencias
+npm install
+
+# Interfaz gráfica de Cypress
+npm run open
+
+# Ejecución headless con reporter
+npm run test
+
+🔑 Variables de entorno
+
+Crea un archivo .env a partir de .env.example:
+
+SERVER_URL=https://vps-3696213-x.dattaweb.com
+ADMIN_EMAIL=admin@admin.com
+ADMIN_PASSWORD=admin
+
+# Mercado Pago sandbox
+MP_USER=TESTUSER2010833032
+MP_PASSWORD=B422F0BB#c839#4bbe#
+NGROK_URL=https://<tu-subdominio>.ngrok-free.app
+
+
+🚫 Recomendacion no subir .env al repositorio.
+
+
+📋 Plan de pruebas
+
+El plan de pruebas se encuentra en un documento excel.
+(link)
+
+🐞 Tablero Trello
+(link)
+
+📌 Entregables del challenge
+
+Plan de pruebas (Excel/Sheets).
+
+Repositorio público con los tests Cypress.
+
+Tablero Trello con defectos reportados.
+
+👥 Equipo
+1- Martina Sansone

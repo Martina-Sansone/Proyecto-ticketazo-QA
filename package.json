@@ -3,13 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox"
   },
-  "keywords": [],
+  "keywords": [
+    "cypress",
+    "e2e",
+    "testing",
+    "qa",
+    "ticketazo"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Automatización E2E de Ticketazo con Cypress - Challenge QA",
   "devDependencies": {
-    "cypress": "^15.1.0"
+    "cypress": "^15.2.0"
   }
 }

@@ -1,0 +1,34 @@
+{
+  "admin": {
+    "email": "admin@admin.com",
+    "password": "admin",
+    "role": "administrator"
+  },
+  "testUser": {
+    "name": "Juan Pérez",
+    "email": "juan@email.com",
+    "phone": "+54911234567",
+    "role": "customer"
+  },
+  "invalidUser": {
+    "email": "usuario@invalido.com",
+    "password": "contraseñaincorrecta"
+  },
+  "mercadoPago": {
+    "user": "TESTUSER2010833032",
+    "password": "B422F0BB#c839#4bbe#",
+    "securityCode": "293542",
+    "testCards": {
+      "visa": {
+        "number": "4170068810108020",
+        "securityCode": "123",
+        "expirationDate": "12/25"
+      },
+      "mastercard": {
+        "number": "5031755734530604",
+        "securityCode": "123",
+        "expirationDate": "12/25"
+      }
+    }
+  }
+} 

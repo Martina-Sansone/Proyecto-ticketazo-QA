@@ -1,0 +1,29 @@
+{
+  "conciertoRock": {
+    "name": "Concierto de Rock 2025",
+    "date": "2025-10-15",
+    "time": "20:00",
+    "location": "Teatro Municipal",
+    "price": 5000,
+    "capacity": 100,
+    "description": "Gran concierto de rock con las mejores bandas locales"
+  },
+  "festivalJazz": {
+    "name": "Festival de Jazz Primavera",
+    "date": "2025-11-20",
+    "time": "19:30",
+    "location": "Centro Cultural",
+    "price": 7500,
+    "capacity": 200,
+    "description": "Festival de jazz con artistas internacionales"
+  },
+  "obraTeatro": {
+    "name": "Romeo y Julieta",
+    "date": "2025-12-05",
+    "time": "21:00",
+    "location": "Teatro Nacional",
+    "price": 3500,
+    "capacity": 150,
+    "description": "Clásica obra de Shakespeare"
+  }
+} 

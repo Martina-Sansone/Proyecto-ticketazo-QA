@@ -9,67 +9,306 @@ Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema
 
 ---
 
-## 🌐 Entornos
-- **QA (principal para pruebas):** https://vps-3696213-x.dattaweb.com/  
+## 🌐 Entornos de Prueba
+- **QA (recomendado para pruebas):** https://vps-3696213-x.dattaweb.com/  
 - **Producción (misma data que QA):** https://ticketazo.com.ar  
+
+### 🔑 Credenciales de Prueba
+- **Admin**: admin@admin.com / admin
+- **Mercado Pago**: TESTUSER2010833032 / B422F0BB#c839#4bbe#
+- **Código de seguridad**: 293542
 
 ---
 
-## 🛠️ Requisitos
+## 🛠️ Configuración del Entorno
+
+### Requisitos Previos
 - Node.js 18+  
 - npm 9+  
 - Cypress 13+  
 
----
+### 📦 Instalación Inicial (TODOS los integrantes)
 
-## 📦 Instalación
 ```bash
-# Clonar el repositorio
+# 1. Clonar el repositorio
 git clone https://github.com/Martina-Sansone/Proyecto-ticketazo-QA.git
 
-cd "Challengue TICKETAZO"
+# 2. Navegar al directorio
+cd Proyecto-ticketazo-QA
 
-# Instalar dependencias
+# 3. Instalar dependencias
 npm install
 
-# Interfaz gráfica de Cypress
-npm run open
+# 4. Configurar variables de entorno
+cp .env
+# Editar .env si es necesario (normalmente no hace falta) se compartio por WhatsApp
+```
 
-# Ejecución headless con reporter
+### 🚀 Comandos Disponibles
+
+```bash
+# 🔧 DESARROLLO (con interfaz gráfica)
+npm run cypress:open          # Abre Cypress en modo interactivo
+
+# 🧪 EJECUCIÓN DE TESTS
+npm run test                  # Ejecuta todos los tests (modo headless)
+npm run cypress:run           # Mismo que test (comando explícito)
+
+# 🐛 DEBUGGING
+npm run test:headed           # Ejecuta tests mostrando el navegador
+npm run test:chrome           # Ejecuta tests específicamente en Chrome
+npm run test:firefox          # Ejecuta tests específicamente en Firefox
+```
+
+### 🎯 Comandos por Rol del Equipo
+
+#### Para DESARROLLADORES de Tests:
+```bash
+npm run cypress:open          # Desarrollo interactivo
+npm run test:headed           # Verificar tests visualmente
+```
+
+#### Para TESTERS/QA:
+```bash
+npm run test                  # Ejecución completa
+npm run test:chrome           # Validación cross-browser
+```
+
+#### Para INTEGRACIÓN/CI:
+```bash
+npm run test                  # Comando estándar para CI/CD
+```
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+cypress/
+├── e2e/                     # Tests end-to-end
+│   ├── 01_login.spec.cy.js     # Autenticación
+│   ├── 02_events.spec.cy.js    # Gestión de eventos
+│   ├── 03_tickets.spec.cy.js   # Compra de tickets
+│   ├── 04_payments.spec.cy.js  # Proceso de pago
+│   └── 05_admin.spec.cy.js     # Funciones administrativas
+├── fixtures/                # Datos de prueba
+│   ├── users.json             # Usuarios de prueba
+│   ├── events.json            # Eventos de prueba
+│   └── payments.json          # Datos de pago
+├── support/                 # Configuración y comandos
+│   ├── commands.js            # Comandos personalizados
+│   ├── e2e.js                # Configuración global
+│   └── page-objects/          # Page Object Model
+│       ├── LoginPage.js
+│       ├── EventsPage.js
+│       └── PaymentPage.js
+└── screenshots/             # Capturas automáticas (fallos)
+```
+
+---
+
+## 🧪 Casos de Prueba Implementados
+
+### ✅ Tests Críticos (Mínimo 5 requeridos)
+1. **Login y Autenticación** - Acceso administrativo
+2. **Creación de Eventos** - Funcionalidad core del sistema
+3. **Compra de Tickets** - Flujo completo de usuario
+4. **Proceso de Pago** - Integración Mercado Pago
+5. **Gestión Administrativa** - CRUD de eventos/usuarios
+
+### 📊 Cobertura Actual
+- [ ] Login/Logout (admin@admin.com)
+- [ ] Creación de eventos
+- [ ] Búsqueda y filtrado de eventos
+- [ ] Proceso de compra de tickets
+- [ ] Integración con Mercado Pago
+- [ ] Gestión de usuarios (admin)
+- [ ] Validaciones de formularios
+- [ ] Responsive design
+
+---
+
+## 📋 Entregables del Challenge
+
+### 1️⃣ Plan de Pruebas
+- **Formato**: Excel/Google Sheets
+- **Ubicación**: [Enlace al plan de pruebas]
+- **Responsable**: [Asignar integrante]
+
+### 2️⃣ Automatización Cypress
+- **Repositorio**: Este repositorio público
+- **Tests mínimos**: 5 casos críticos E2E
+- **Responsables**: [Distribuir entre integrantes]
+
+### 3️⃣ Tablero Trello
+- **URL**: [Enlace al tablero Trello]
+- **Columnas**: Backlog → En progreso → Listo para revisar → Cerrado
+- **Responsable**: [Asignar integrante]
+
+---
+
+## 🐛 Reporte de Bugs
+
+### Formato de Reporte (Trello)
+Cada tarjeta debe incluir:
+- **ID**: TICK-001, TICK-002, etc.
+- **Título**: Descripción concisa del problema
+- **Descripción**: Detalle del comportamiento
+- **Pasos para reproducir**: Lista numerada
+- **Resultado esperado vs actual**
+- **Severidad**: Alta/Media/Baja
+- **Prioridad**: P1/P2/P3
+- **Evidencia**: Capturas/videos
+
+---
+
+## 🚦 Flujo de Trabajo del Equipo
+
+### 1. Configuración Individual
+```bash
+git clone [repositorio]
+npm install
+cp .env.example .env
+npm run cypress:open  # Verificar que funciona
+```
+
+### 2. Desarrollo Colaborativo
+- **Crear rama por funcionalidad**: `git checkout -b feature/login-tests`
+- **Commits descriptivos**: `git commit -m "feat: add login validation tests"`
+- **Pull requests para revisión**: Antes de mergear a main
+
+### 3. Comunicación
+- **Discord**: Canal principal (obligatorio)
+- **Notificaciones**: Cambios importantes al equipo
+- **Revisiones**: Code review entre integrantes
+
+---
+
+## 📅 Cronograma Sugerido
+
+### Semana 1: Preparación
+- [ ] Configuración del entorno (todos)
+- [ ] Exploración manual de Ticketazo
+- [ ] División de responsabilidades
+
+### Semana 2: Desarrollo
+- [ ] Plan de pruebas (Excel/Sheets)
+- [ ] Implementación de tests E2E
+- [ ] Configuración del tablero Trello
+
+### Semana 3: Finalización
+- [ ] Ejecución y refinamiento de tests
+- [ ] Documentación de bugs encontrados
+- [ ] Preparación de entrega final
+
+**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2025 – 23:59h (GMT-3)**
+
+---
+
+## ⚠️ Notas Importantes
+
+### Configuración de Mercado Pago (cuando sea necesario)
+```bash
+# Instalar ngrok globalmente
+npm install -g ngrok
+
+# Ejecutar ngrok en puerto 3001
+ngrok http 3001
+
+# Copiar la URL generada y actualizar .env
+# NGROK_URL=https://tu-subdominio.ngrok-free.app
+```
+
+### Verificación antes de entregar
+```bash
+# Ejecutar todos los tests
 npm run test
 
-🔑 Variables de entorno
+# Verificar que pasan todos los casos
+# Revisar que el repositorio sea público
+# Confirmar que los enlaces funcionan
+```
 
-Crea un archivo .env a partir de .env.example:
+---
 
-SERVER_URL=https://vps-3696213-x.dattaweb.com
-ADMIN_EMAIL=admin@admin.com
-ADMIN_PASSWORD=admin
+## 🆘 Soporte y Dudas
 
-# Mercado Pago sandbox
-MP_USER=TESTUSER2010833032
-MP_PASSWORD=B422F0BB#c839#4bbe#
-NGROK_URL=https://<tu-subdominio>.ngrok-free.app
+- **Canal Discord**: Soporte del curso
+- **Profesor**: Gabriel (arrobar en Discord)
+- **Documentación Cypress**: https://docs.cypress.io/
 
-
-🚫 Recomendacion no subir .env al repositorio.
-
-
-📋 Plan de pruebas
-
-El plan de pruebas se encuentra en un documento excel.
-(link)
+---
 
 🐞 Tablero Trello
 (link)
 
-📌 Entregables del challenge
+### ✅ Completado
+- [x] Configuración inicial del proyecto
+- [x] Scripts npm funcionales
+- [x] Estructura de directorios
+- [x] Documentación del README
 
-Plan de pruebas (Excel/Sheets).
+### 🔄 En Progreso
+- [ ] Implementación de tests E2E
+- [ ] Plan de pruebas detallado
+- [ ] Configuración del tablero Trello
 
-Repositorio público con los tests Cypress.
+### ⏳ Pendiente
+- [ ] Tests de integración con Mercado Pago
+- [ ] Evidencia de bugs encontrados
+- [ ] Documentación final
 
-Tablero Trello con defectos reportados.
+---
 
 👥 Equipo
+```
 1- Martina Sansone
+2- Jouni Alsaad
+3- Paul Gonzales
+4- Marlene
+5- Matías Quiroga
+6- Nicolas
+7- Daniela
+```
+
+Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress** como parte del Challenge de QA.
+
+## 👥 Equipo de Desarrollo
+- **7 integrantes** trabajando colaborativamente
+- **Comunicación**: Discord (obligatorio según consigna)
+- **Entrega**: Un solo integrante realizará la entrega final
+
+### 📋 Distribución de Tareas por Integrante
+
+#### 👤 **Jou**
+- **Login** → Validar ingreso con credenciales correctas/incorrectas
+- **Register** → Validar alta de usuario (campos obligatorios, errores)
+
+#### 👤 **Nicolás + Martina**
+- **Flujo de compra** → Abrir evento, elegir entradas, ver resumen, aceptar TyC y simular pago con Mercado Pago (sandbox)
+
+#### 👤 **Matías Quiroga**
+- **Mis entradas** → Ver tarjetas de entradas, detalle con QR
+- **Validar asiento cargado** → Que aparezca número de butaca/ubicación
+- **Transferir entrada** → Ingresar mail, confirmar y ver cambio de estado
+
+#### 👤 **Jouni**
+- **Escanear QR** → Probar lectura con librerías JS
+
+#### 👤 **Paul Gonzales**
+- **Buscador y filtros** → Probar búsqueda por nombre, fecha, categoría, cercanos, provincia y limpiar filtros
+
+#### 👤 **Marlene**
+- **Cargar evento** → Alta/edición de evento y validaciones
+- **Mis eventos** → Listado de eventos creados, edición y persistencia
+
+#### 👤 **Daniela**
+- **Editar perfil** → Cambiar foto, nombre, usuario, teléfono, guardar y verificar persistencia/validaciones
+
+---
+
+## 🎯 Objetivo
+- Automatizar casos funcionales críticos con Cypress
+- Aplicar buenas prácticas de automatización (Page Objects, comandos custom, fixtures)
+- Implementar casos E2E según distribución de tareas del equipo
+

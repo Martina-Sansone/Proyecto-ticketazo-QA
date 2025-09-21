@@ -264,11 +264,11 @@ npm run test
 ```
 1- Martina Sansone
 2- Jouni Alsaad
-3- Paul Gonzales
-4- Marlene
-5- Matías Quiroga
-6- Nicolas Aguero 
-7- Daniela
+3- Marlene
+4- Matías Quiroga
+5- Nicolas Aguero
+6- Daniela
+7- Paul Gonzales
 ```
 
 Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress** como parte del Challenge de QA.

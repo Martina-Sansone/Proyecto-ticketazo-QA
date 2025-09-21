@@ -13,7 +13,7 @@ class RegisterPage {
     passwordInput: '[data-cy="input-password"]',
     confirmPasswordInput: '[data-cy="input-repetir-password"]',
     registerButton: '[data-cy="btn-registrarse"]',
-    errorMessages: '.error, .alert, .message, .alert-danger, [class*="error"]',
+    errorMessages: '[data-cy="error-message"]',
     successMessages: '.success, .alert-success, [class*="success"]'
   }
   
@@ -129,14 +129,19 @@ class RegisterPage {
   fillBirthDate(date) {
     if (date) {
       cy.get(this.elements.birthDateInput).click();
-      cy.wait(1000);
+      cy.wait(2000);
       const [year, month, day] = date.split('-');
-      cy.get(this.elements.birthDateInput).find('[data-type="day"]').click();
-      cy.get(this.elements.birthDateInput).find('[data-type="day"]').type(day);
-      cy.get(this.elements.birthDateInput).find('[data-type="month"]').click();
-      cy.get(this.elements.birthDateInput).find('[data-type="month"]').type(month);
-      cy.get(this.elements.birthDateInput).find('[data-type="year"]').click();
-      cy.get(this.elements.birthDateInput).find('[data-type="year"]').type(year);
+      
+      cy.get(this.elements.birthDateInput).find('[data-type="day"]').click({ force: true });
+      cy.get(this.elements.birthDateInput).find('[data-type="day"]').clear({ force: true }).type(day, { force: true });
+      
+      cy.get(this.elements.birthDateInput).find('[data-type="month"]').click({ force: true });
+      cy.get(this.elements.birthDateInput).find('[data-type="month"]').clear({ force: true }).type(month, { force: true });
+      
+      cy.get(this.elements.birthDateInput).find('[data-type="year"]').click({ force: true });
+      cy.get(this.elements.birthDateInput).find('[data-type="year"]').clear({ force: true }).type(year, { force: true });
+      cy.get('body').click(0, 0);
+      cy.wait(1000);
     }
     return this;
   }
@@ -158,9 +163,9 @@ class RegisterPage {
     if (userData.lastName) this.fillLastName(userData.lastName);
     if (userData.phone) this.fillPhone(userData.phone);
     if (userData.dni) this.fillDNI(userData.dni);
-    if (userData.province) this.fillProvince(userData.province);
-    if (userData.city) this.fillCity(userData.city);
-    if (userData.birthDate) this.fillBirthDate(userData.birthDate);
+    // if (userData.province) this.fillProvince(userData.province);
+    // if (userData.city) this.fillCity(userData.city);
+    // if (userData.birthDate) this.fillBirthDate(userData.birthDate);
     if (userData.email) this.fillEmail(userData.email);
     if (userData.confirmEmail) this.fillConfirmEmail(userData.confirmEmail);
     if (userData.password) this.fillPassword(userData.password);

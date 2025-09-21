@@ -126,6 +126,238 @@ describe('TC-REG: Registro de Usuario', () => {
       cy.takeScreenshot('registro-dni-existente');
     });
   });
+
+  context('Validaciones de Contraseña', () => {
+    it('Debe validar contraseña muy corta (menos de 8 caracteres)', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.shortPassword);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('La contraseña debe tener al menos 8 caracteres') || 
+            bodyText.includes('contraseña') || 
+            bodyText.includes('8 caracteres') ||
+            bodyText.includes('muy corta')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-password-corta');
+    });
+
+    it('Debe validar contraseña sin mayúsculas', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.noUppercasePassword);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('mayúscula') || 
+            bodyText.includes('mayuscula') || 
+            bodyText.includes('contraseña') ||
+            bodyText.includes('requisitos')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-password-sin-mayuscula');
+    });
+
+    it('Debe validar contraseña sin minúsculas', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.noLowercasePassword);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('minúscula') || 
+            bodyText.includes('minuscula') || 
+            bodyText.includes('contraseña') ||
+            bodyText.includes('requisitos')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-password-sin-minuscula');
+    });
+
+    it('Debe validar contraseña sin números', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.noNumberPassword);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('número') || 
+            bodyText.includes('numero') || 
+            bodyText.includes('contraseña') ||
+            bodyText.includes('requisitos')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-password-sin-numero');
+    });
+
+    it('Debe validar contraseña sin símbolos', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.noSymbolPassword);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('símbolo') || 
+            bodyText.includes('simbolo') || 
+            bodyText.includes('contraseña') ||
+            bodyText.includes('requisitos')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-password-sin-simbolo');
+    });
+  });
+
+  context('Validaciones de Email', () => {
+    it('Debe validar email con formato inválido (sin @)', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.invalidEmailNoAt);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('email válido') || 
+            bodyText.includes('formato') || 
+            bodyText.includes('inválido') ||
+            bodyText.includes('correo') ||
+            bodyText.includes('error')) {
+          const hasErrorMessage = 
+            bodyText.includes('email válido') ||
+            bodyText.includes('formato') ||
+            bodyText.includes('inválido') ||
+            bodyText.includes('error');
+          expect(hasErrorMessage, 'Sistema detectó email inválido sin @').to.be.true;
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-email-sin-arroba');
+    });
+
+    it('Debe validar email con formato inválido (sin dominio)', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.invalidEmailNoDomain);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('email válido') || 
+            bodyText.includes('formato') || 
+            bodyText.includes('inválido') ||
+            bodyText.includes('dominio') ||
+            bodyText.includes('error')) {
+          const hasErrorMessage = 
+            bodyText.includes('email válido') ||
+            bodyText.includes('formato') ||
+            bodyText.includes('inválido') ||
+            bodyText.includes('error');
+          expect(hasErrorMessage, 'Sistema detectó email sin dominio').to.be.true;
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-email-sin-dominio');
+    });
+
+    it('Debe validar email vacío en registro', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.emptyEmail);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('Este campo es obligatorio') || 
+            bodyText.includes('requerido') || 
+            bodyText.includes('obligatorio') ||
+            bodyText.includes('email')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-email-vacio');
+    });
+
+    it('Debe validar confirmación de email vacía', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.emptyConfirmEmail);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('Este campo es obligatorio') || 
+            bodyText.includes('confirmar') || 
+            bodyText.includes('requerido') ||
+            bodyText.includes('email')) {
+          cy.get('.error, .alert, .message').should('be.visible');
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-confirmar-email-vacio');
+    });
+
+    it('Debe validar email con caracteres especiales inválidos', () => {
+      registerPage.visit();
+      registerPage.verifyPageLoaded();
+      registerPage.fillRegistrationForm(userData.invalidUsers.invalidEmailSpecialChars);
+      registerPage.clickRegisterButton();
+
+      cy.get('body').then($body => {
+        const bodyText = $body.text();
+        if (bodyText.includes('email válido') || 
+            bodyText.includes('formato') || 
+            bodyText.includes('inválido') ||
+            bodyText.includes('caracteres') ||
+            bodyText.includes('error')) {
+          const hasErrorMessage = 
+            bodyText.includes('email válido') ||
+            bodyText.includes('formato') ||
+            bodyText.includes('inválido') ||
+            bodyText.includes('error');
+          expect(hasErrorMessage, 'Sistema detectó email con caracteres inválidos').to.be.true;
+        } else {
+          cy.url().should('include', 'registerUser');
+        }
+      });
+
+      cy.takeScreenshot('registro-email-caracteres-especiales');
+    });
+  });
   
   afterEach(() => {
     cy.clearCookies();

@@ -39,7 +39,7 @@ describe('TC-001: Login Administrador', () => {
         const bodyText = $body.text().toLowerCase();
         const hasLoginSuccess = 
           bodyText.includes('admin') || 
-          bodyText.includes('dashboard') || 
+                                 bodyText.includes('dashboard') || 
           bodyText.includes('bienvenido') ||
           bodyText.includes('cerrar sesión') ||
           bodyText.includes('logout') ||

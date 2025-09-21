@@ -1,23 +1,23 @@
 class LoginPage {
   
-  get loginButton() {
+    get loginButton() {
     return cy.get('a[href*="login"], button:contains("Login"), a:contains("Iniciar"), button:contains("Ingresar")').first();
   }
-  
+
   get emailInput() {
-    return cy.get('input[type="email"], input[name="email"], input[placeholder*="email"]');
+    return cy.get('[data-cy="input-email"]');
   }
-  
+
   get passwordInput() {
-    return cy.get('input[type="password"], input[name="password"], input[placeholder*="password"]');
+    return cy.get('[data-cy="input-password"]');
   }
-  
+
   get submitButton() {
-    return cy.get('button[type="submit"], input[type="submit"], button:contains("Ingresar"), button:contains("Login")');
+    return cy.get('[data-cy="btn-login"]');
   }
-  
+
   get errorMessage() {
-    return cy.get('.error, .alert-danger, [class*="error"], [class*="danger"]');
+    return cy.get('[data-cy="error-message"]');
   }
   
   get successMessage() {
@@ -27,7 +27,7 @@ class LoginPage {
   get logoutButton() {
     return cy.get('a:contains("Logout"), a:contains("Salir"), a:contains("Cerrar"), button:contains("Logout")');
   }
-
+  
   visit() {
     cy.visit('/');
     return this;
@@ -63,7 +63,7 @@ class LoginPage {
     this.logoutButton.click();
     return this;
   }
-
+  
   login(email, password) {
     this.visit()
       .clickLoginButton()
@@ -80,7 +80,7 @@ class LoginPage {
     this.login(adminEmail, adminPassword);
     return this;
   }
-
+  
   verifyLoginSuccess() {
     cy.url().should('not.include', 'login').and('not.include', 'auth');
     cy.get('body').should('be.visible');

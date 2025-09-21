@@ -7,6 +7,9 @@ Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema
 - Automatizar casos funcionales críticos con Cypress.
 - Aplicar buenas prácticas de reporte de defectos (Trello).
 
+## 📋 Gestión del Proyecto
+- **Tablero Trello:** [Challenge Testing Grupo 5](https://trello.com/b/4IRJCob2/challenge-testing-grupo-5)
+
 ---
 
 ## 🌐 Entornos de Prueba

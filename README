@@ -267,7 +267,7 @@ npm run test
 3- Paul Gonzales
 4- Marlene
 5- Matías Quiroga
-6- Nicolas
+6- Nicolas Aguero 
 7- Daniela
 ```
 
@@ -295,7 +295,7 @@ Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress*
 #### 👤 **Jouni**
 - **Escanear QR** → Probar lectura con librerías JS
 
-#### 👤 **Paul Gonzales**
+#### 👤 **Nicolas Aguero**
 - **Buscador y filtros** → Probar búsqueda por nombre, fecha, categoría, cercanos, provincia y limpiar filtros
 
 #### 👤 **Marlene**

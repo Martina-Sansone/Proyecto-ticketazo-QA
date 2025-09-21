@@ -1,0 +1,93 @@
+{
+  "validUser": {
+    "firstName": "Usuario",
+    "lastName": "Nuevo",
+    "phone": "3815678901",
+    "dni": "12345678",
+    "province": "Buenos Aires",
+    "city": "La Plata",
+    "birthDate": "1995-01-15",
+    "email": "usuario.nuevo.test@example.com",
+    "confirmEmail": "usuario.nuevo.test@example.com",
+    "password": "Password123!",
+    "confirmPassword": "Password123!"
+  },
+
+  "invalidUsers": {
+    "emailMismatch": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815555555",
+      "dni": "87654321",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1990-05-20",
+      "email": "test.user@example.com",
+      "confirmEmail": "different.email@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "emptyPhone": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "",
+      "dni": "11111111",
+          "province": "Buenos Aires",
+    "city": "La Plata",
+      "birthDate": "1992-03-10",
+      "email": "test.empty.phone@example.com",
+      "confirmEmail": "test.empty.phone@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "emptyFirstName": {
+      "firstName": "",
+      "lastName": "User",
+      "phone": "3815555666",
+      "dni": "22222222",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1988-12-25",
+      "email": "test.empty.name@example.com",
+      "confirmEmail": "test.empty.name@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "passwordMismatch": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815555777",
+      "dni": "33333333",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1993-07-08",
+      "email": "test.password@example.com",
+      "confirmEmail": "test.password@example.com",
+      "password": "Password123!",
+      "confirmPassword": "DifferentPassword123!"
+    },
+    "existingDNI": {
+      "firstName": "Existing",
+      "lastName": "User",
+      "phone": "3815555888",
+      "dni": "94555555",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1996-09-10",
+      "email": "existing.user@example.com",
+      "confirmEmail": "existing.user@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    }
+  },
+  
+  "expectedMessages": {
+    "existingDNI": "Ya existe un usuario registrado con ese DNI",
+    "requiredPhone": "Este campo es obligatorio",
+    "requiredFirstName": "Este campo es obligatorio",
+    "emailMismatch": "Los emails no coinciden",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "invalidDNI": "Ingrese un DNI válido",
+    "registrationSuccess": "Registro exitoso"
+  }
+} 

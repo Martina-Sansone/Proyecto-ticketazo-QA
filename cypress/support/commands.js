@@ -58,6 +58,8 @@ Cypress.Commands.add('logout', () => {
  * Comando para navegar al panel administrativo
  * Uso: cy.goToAdminPanel()
  */
+import 'cypress-file-upload';
+
 Cypress.Commands.add('goToAdminPanel', () => {
   cy.log('🏠 Navegando al panel administrativo');
   

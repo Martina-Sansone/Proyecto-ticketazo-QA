@@ -94,17 +94,15 @@ cypress/
 ├── fixtures/                # Datos de prueba
 │   ├── jou/                    # Datos específicos del usuario
 │   │   └── registerData.json      # Datos para tests de registro
-│   ├── test-data/             # Datos compartidos
-│   │   ├── users.json            # Usuarios de prueba
-│   │   └── events.json           # Eventos de prueba
-│   └── example.json           # Datos de ejemplo
+│   └── test-data/             # Datos compartidos
+│       ├── users.json            # Usuarios de prueba
+│       └── events.json           # Eventos de prueba
 ├── support/                 # Configuración y comandos
 │   ├── commands.js            # Comandos personalizados
 │   ├── e2e.js                # Configuración global
-│   ├── page-objects/          # Page Object Model
-│   │   ├── LoginPage.js          # Page Object para login
-│   │   └── RegisterPage.js       # Page Object para registro
-│   └── utils/                # Utilidades auxiliares
+│   └── page-objects/          # Page Object Model
+│       ├── LoginPage.js          # Page Object para login
+│       └── RegisterPage.js       # Page Object para registro
 ├── screenshots/             # Capturas automáticas (fallos)
 ├── videos/                  # Videos de ejecución
 └── reports/                 # Reportes de ejecución
@@ -137,8 +135,8 @@ cypress/
 
 ### 1️⃣ Plan de Pruebas
 - **Formato**: Excel/Google Sheets
-- **Ubicación**: [Enlace al plan de pruebas]
-- **Responsable**: [Asignar integrante]
+- **Ubicación**: [Plan de Pruebas - Google Sheets](https://docs.google.com/spreadsheets/d/1rgYoSy1TpR3NU_Uma1GmQyisZ0cAaGA9-KmyYlWs6jA/edit?gid=1737084926#gid=1737084926)
+- **Responsable**: Equipo colaborativo
 
 ### 2️⃣ Automatización Cypress
 - **Repositorio**: Este repositorio público
@@ -206,7 +204,7 @@ npm run cypress:open
 - [ ] Documentación de bugs encontrados
 - [ ] Preparación de entrega final
 
-**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2025 – 23:59h (GMT-3)**
+**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2024 – 23:59h (GMT-3)**
 
 ---
 
@@ -318,6 +316,8 @@ Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress*
 ---
 
 ## 📋 Plan de Pruebas Detallado
+
+**📊 Documento completo:** [Plan de Pruebas - Google Sheets](https://docs.google.com/spreadsheets/d/1rgYoSy1TpR3NU_Uma1GmQyisZ0cAaGA9-KmyYlWs6jA/edit?gid=1737084926#gid=1737084926)
 
 ### Suite Login y Register
 

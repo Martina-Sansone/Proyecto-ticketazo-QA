@@ -9,67 +9,339 @@ Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema
 
 ---
 
-## 🌐 Entornos
-- **QA (principal para pruebas):** https://vps-3696213-x.dattaweb.com/  
+## 🌐 Entornos de Prueba
+- **QA (recomendado para pruebas):** https://vps-3696213-x.dattaweb.com/  
 - **Producción (misma data que QA):** https://ticketazo.com.ar  
+
+### 🔑 Credenciales de Prueba
+- **Admin**: admin@admin.com / admin
+- **Mercado Pago**: TESTUSER2010833032 / B422F0BB#c839#4bbe#
+- **Código de seguridad**: 293542
 
 ---
 
-## 🛠️ Requisitos
+## 🛠️ Configuración del Entorno
+
+### Requisitos Previos
 - Node.js 18+  
 - npm 9+  
 - Cypress 13+  
 
----
+### 📦 Instalación Inicial (TODOS los integrantes)
 
-## 📦 Instalación
 ```bash
-# Clonar el repositorio
+# 1. Clonar el repositorio
 git clone https://github.com/Martina-Sansone/Proyecto-ticketazo-QA.git
 
-cd "Challengue TICKETAZO"
+# 2. Navegar al directorio
+cd Proyecto-ticketazo-QA
 
-# Instalar dependencias
+# 3. Instalar dependencias
 npm install
 
-# Interfaz gráfica de Cypress
-npm run open
+# 4. Configurar variables de entorno
+cp .env
+# Editar .env si es necesario (normalmente no hace falta) se compartio por WhatsApp
+```
 
-# Ejecución headless con reporter
+### 🚀 Comandos Disponibles
+
+```bash
+# 🔧 DESARROLLO (con interfaz gráfica)
+npm run cypress:open          # Abre Cypress en modo interactivo
+
+# 🧪 EJECUCIÓN DE TESTS
+npm run test                  # Ejecuta todos los tests (modo headless)
+npm run cypress:run           # Mismo que test (comando explícito)
+
+# 🐛 DEBUGGING
+npm run test:headed           # Ejecuta tests mostrando el navegador
+npm run test:chrome           # Ejecuta tests específicamente en Chrome
+npm run test:firefox          # Ejecuta tests específicamente en Firefox
+```
+
+### 🎯 Comandos por Rol del Equipo
+
+#### Para DESARROLLADORES de Tests:
+```bash
+npm run cypress:open          # Desarrollo interactivo
+npm run test:headed           # Verificar tests visualmente
+```
+
+#### Para TESTERS/QA:
+```bash
+npm run test                  # Ejecución completa
+npm run test:chrome           # Validación cross-browser
+```
+
+#### Para INTEGRACIÓN/CI:
+```bash
+npm run test                  # Comando estándar para CI/CD
+```
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+cypress/
+├── e2e/                     # Tests end-to-end
+│   ├── 01_login.spec.cy.js     # Tests de autenticación (Login)
+│   └── 02_register.spec.cy.js  # Tests de registro de usuario
+├── fixtures/                # Datos de prueba
+│   ├── jou/                    # Datos específicos del usuario
+│   │   └── registerData.json      # Datos para tests de registro
+│   ├── test-data/             # Datos compartidos
+│   │   ├── users.json            # Usuarios de prueba
+│   │   └── events.json           # Eventos de prueba
+│   └── example.json           # Datos de ejemplo
+├── support/                 # Configuración y comandos
+│   ├── commands.js            # Comandos personalizados
+│   ├── e2e.js                # Configuración global
+│   ├── page-objects/          # Page Object Model
+│   │   ├── LoginPage.js          # Page Object para login
+│   │   └── RegisterPage.js       # Page Object para registro
+│   └── utils/                # Utilidades auxiliares
+├── screenshots/             # Capturas automáticas (fallos)
+├── videos/                  # Videos de ejecución
+└── reports/                 # Reportes de ejecución
+```
+
+---
+
+## 🧪 Casos de Prueba Implementados
+
+### ✅ Tests Críticos (Mínimo 5 requeridos)
+1. **Login y Autenticación** - Acceso administrativo
+2. **Creación de Eventos** - Funcionalidad core del sistema
+3. **Compra de Tickets** - Flujo completo de usuario
+4. **Proceso de Pago** - Integración Mercado Pago
+5. **Gestión Administrativa** - CRUD de eventos/usuarios
+
+### 📊 Cobertura Actual
+- [ ] Login/Logout (admin@admin.com)
+- [ ] Creación de eventos
+- [ ] Búsqueda y filtrado de eventos
+- [ ] Proceso de compra de tickets
+- [ ] Integración con Mercado Pago
+- [ ] Gestión de usuarios (admin)
+- [ ] Validaciones de formularios
+- [ ] Responsive design
+
+---
+
+## 📋 Entregables del Challenge
+
+### 1️⃣ Plan de Pruebas
+- **Formato**: Excel/Google Sheets
+- **Ubicación**: [Enlace al plan de pruebas]
+- **Responsable**: [Asignar integrante]
+
+### 2️⃣ Automatización Cypress
+- **Repositorio**: Este repositorio público
+- **Tests mínimos**: 5 casos críticos E2E
+- **Responsables**: [Distribuir entre integrantes]
+
+### 3️⃣ Tablero Trello
+- **URL**: [Enlace al tablero Trello]
+- **Columnas**: Backlog → En progreso → Listo para revisar → Cerrado
+- **Responsable**: [Asignar integrante]
+
+---
+
+## 🐛 Reporte de Bugs
+
+### Formato de Reporte (Trello)
+Cada tarjeta debe incluir:
+- **ID**: TICK-001, TICK-002, etc.
+- **Título**: Descripción concisa del problema
+- **Descripción**: Detalle del comportamiento
+- **Pasos para reproducir**: Lista numerada
+- **Resultado esperado vs actual**
+- **Severidad**: Alta/Media/Baja
+- **Prioridad**: P1/P2/P3
+- **Evidencia**: Capturas/videos
+
+---
+
+## 🚦 Flujo de Trabajo del Equipo
+
+### 1. Configuración Individual
+```bash
+git clone [repositorio]
+npm install
+cp .env.example .env
+npm run cypress:open
+```
+
+### 2. Desarrollo Colaborativo
+- **Crear rama por funcionalidad**: `git checkout -b feature/login-tests`
+- **Commits descriptivos**: `git commit -m "feat: add login validation tests"`
+- **Pull requests para revisión**: Antes de mergear a main
+
+### 3. Comunicación
+- **Discord**: Canal principal (obligatorio)
+- **Notificaciones**: Cambios importantes al equipo
+- **Revisiones**: Code review entre integrantes
+
+---
+
+## 📅 Cronograma
+
+### Semana 1: Preparación
+- [ ] Configuración del entorno (todos)
+- [ ] Exploración manual de Ticketazo
+- [ ] División de responsabilidades
+
+### Semana 2: Desarrollo
+- [ ] Plan de pruebas (Excel/Sheets)
+- [ ] Implementación de tests E2E
+- [ ] Configuración del tablero Trello
+
+### Semana 3: Finalización
+- [ ] Ejecución y refinamiento de tests
+- [ ] Documentación de bugs encontrados
+- [ ] Preparación de entrega final
+
+**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2025 – 23:59h (GMT-3)**
+
+---
+
+## ⚠️ Notas Importantes
+
+### Configuración de Mercado Pago (cuando sea necesario)
+```bash
+# Instalar ngrok globalmente
+npm install -g ngrok
+
+# Ejecutar ngrok en puerto 3001
+ngrok http 3001
+
+# Copiar la URL generada y actualizar .env
+# NGROK_URL=https://tu-subdominio.ngrok-free.app
+```
+
+### Verificación antes de entregar
+```bash
+# Ejecutar todos los tests
 npm run test
 
-🔑 Variables de entorno
+# Verificar que pasan todos los casos
+# Revisar que el repositorio sea público
+# Confirmar que los enlaces funcionan
+```
 
-Crea un archivo .env a partir de .env.example:
+---
 
-SERVER_URL=https://vps-3696213-x.dattaweb.com
-ADMIN_EMAIL=admin@admin.com
-ADMIN_PASSWORD=admin
+## 🆘 Soporte y Dudas
 
-# Mercado Pago sandbox
-MP_USER=TESTUSER2010833032
-MP_PASSWORD=B422F0BB#c839#4bbe#
-NGROK_URL=https://<tu-subdominio>.ngrok-free.app
+- **Canal Discord**: Soporte del curso
+- **Profesor**: Gabriel
+- **Documentación Cypress**: https://docs.cypress.io/
 
-
-🚫 Recomendacion no subir .env al repositorio.
-
-
-📋 Plan de pruebas
-
-El plan de pruebas se encuentra en un documento excel.
-(link)
+---
 
 🐞 Tablero Trello
 (link)
 
-📌 Entregables del challenge
+### ✅ Completado
+- [x] Configuración inicial del proyecto
+- [x] Scripts npm funcionales
+- [x] Estructura de directorios
+- [x] Documentación del README
 
-Plan de pruebas (Excel/Sheets).
+### 🔄 En Progreso
+- [ ] Implementación de tests E2E
+- [ ] Plan de pruebas detallado
+- [ ] Configuración del tablero Trello
 
-Repositorio público con los tests Cypress.
+### ⏳ Pendiente
+- [ ] Tests de integración con Mercado Pago
+- [ ] Evidencia de bugs encontrados
+- [ ] Documentación final
 
-Tablero Trello con defectos reportados.
+---
 
 👥 Equipo
+```
 1- Martina Sansone
+2- Jouni Alsaad
+3- Paul Gonzales
+4- Marlene
+5- Matías Quiroga
+6- Nicolas
+7- Daniela
+```
+
+Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress** como parte del Challenge de QA.
+
+## 👥 Equipo de Desarrollo
+- **7 integrantes** trabajando colaborativamente
+- **Comunicación**: Discord (obligatorio según consigna)
+- **Entrega**: Un solo integrante realizará la entrega final
+
+### 📋 Distribución de Tareas por Integrante
+
+#### 👤 **Jou**
+- **Login** → Validar ingreso con credenciales correctas/incorrectas
+- **Register** → Validar alta de usuario (campos obligatorios, errores)
+
+#### 👤 **Nicolás + Martina**
+- **Flujo de compra** → Abrir evento, elegir entradas, ver resumen, aceptar TyC y simular pago con Mercado Pago (sandbox)
+
+#### 👤 **Matías Quiroga**
+- **Mis entradas** → Ver tarjetas de entradas, detalle con QR
+- **Validar asiento cargado** → Que aparezca número de butaca/ubicación
+- **Transferir entrada** → Ingresar mail, confirmar y ver cambio de estado
+
+
+#### 👤 **Paul Gonzales**
+- **Buscador y filtros** → Probar búsqueda por nombre, fecha, categoría, cercanos, provincia y limpiar filtros
+
+#### 👤 **Marlene**
+- **Cargar evento** → Alta/edición de evento y validaciones
+- **Mis eventos** → Listado de eventos creados, edición y persistencia
+
+#### 👤 **Daniela**
+- **Editar perfil** → Cambiar foto, nombre, usuario, teléfono, guardar y verificar persistencia/validaciones
+
+---
+
+## 🎯 Objetivo
+- Automatizar casos funcionales críticos con Cypress
+- Aplicar buenas prácticas de automatización (Page Objects, comandos custom, fixtures)
+- Implementar casos E2E según distribución de tareas del equipo
+
+---
+
+## 📋 Plan de Pruebas Detallado
+
+### Suite Login y Register
+
+| ID | Título del Caso | Descripción/Objetivo | Precondiciones | Pasos | Datos de Prueba | Resultado Esperado | Severidad | Prioridad |
+|---|---|---|---|---|---|---|---|---|
+| TC-001 | Login Administrador Exitoso | Verificar que el administrador puede acceder al sistema con credenciales válidas | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar redirección al dashboard administrativo | Email: admin@admin.com, Contraseña: admin | El sistema debe autenticar al usuario y redirigir al dashboard administrativo. Se debe mostrar un mensaje de bienvenida o el nombre del usuario logueado. | Crítica | P1 |
+| TC-002 | Login con Email Inválido | Verificar que el sistema rechaza credenciales con email inválido | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: usuario@invalido.com<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar que permanece en página de login<br>7. Verificar mensaje de error | Email: usuario@invalido.com, Contraseña: admin | El sistema debe rechazar el login, mostrar mensaje de error y permanecer en la página de login | Crítica | P1 |
+| TC-003 | Login con Password Incorrecta | Verificar que el sistema rechaza credenciales con password incorrecta | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Ingresar contraseña: passwordIncorrecto<br>5. Hacer clic en 'Ingresar'<br>6. Verificar que permanece en página de login<br>7. Verificar mensaje de error | Email: admin@admin.com, Contraseña: passwordIncorrecto | El sistema debe rechazar el login, mostrar mensaje de error y permanecer en la página de login | Crítica | P1 |
+| TC-004 | Validación de Email Vacío | Verificar que el sistema valida campo email como obligatorio | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Dejar email vacío<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de campo requerido | Email: (vacío), Contraseña: admin | El sistema debe validar que el email es requerido y mostrar indicación de campo obligatorio | Media | P2 |
+| TC-005 | Validación de Password Vacía | Verificar que el sistema valida campo password como obligatorio | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Dejar password vacía<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de campo requerido | Email: admin@admin.com, Contraseña: (vacía) | El sistema debe validar que la password es requerida y mostrar indicación de campo obligatorio | Media | P2 |
+| TC-006 | Validación de Ambos Campos Vacíos | Verificar que el sistema valida ambos campos como obligatorios cuando están vacíos | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Dejar email vacío<br>4. Dejar password vacía<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de ambos campos requeridos | Email: (vacío), Contraseña: (vacía) | El sistema debe validar que ambos campos son requeridos y mostrar indicaciones correspondientes | Media | P2 |
+| TC-007 | Verificación de Precondiciones del Sistema | Verificar que el sistema está disponible y carga correctamente | Acceso a internet y navegador web | 1. Navegar a https://vps-3696213-x.dattaweb.com/<br>2. Verificar que la página carga correctamente<br>3. Verificar que el título contiene 'Ticketazo'<br>4. Verificar que el body existe y es visible | URL: https://vps-3696213-x.dattaweb.com/ | El sistema debe cargar correctamente, mostrar el título 'Ticketazo' y todos los elementos básicos | Crítica | P1 |
+| TC-008 | Registro de Usuario Exitoso | Verificar que un usuario puede registrarse exitosamente con datos válidos | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Usuario<br>   - Apellido: Test<br>   - Teléfono: 3815678901<br>   - DNI: (único basado en timestamp)<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1995-01-15<br>   - Email: test.user.{timestamp}@example.com<br>   - Confirmar email: (mismo email)<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar resultado exitoso o mensaje específico | Datos únicos generados dinámicamente | El usuario debe registrarse exitosamente o mostrar mensaje específico si hay conflicto | Crítica | P1 |
+| TC-009 | Registro con Emails Diferentes | Verificar que el sistema procesa registro cuando los emails no coinciden (sin validación estricta) | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815555555<br>   - DNI: 87654321<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1990-05-20<br>   - Email: test.user@example.com<br>   - Confirmar email: different.email@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar que se procesa sin validación estricta | Email: test.user@example.com, Confirmar email: different.email@example.com | El sistema procesa el registro sin validar que los emails coincidan, o muestra mensaje específico si hay conflicto | Media | P2 |
+| TC-010 | Registro con Teléfono Vacío | Verificar el comportamiento del sistema cuando el teléfono está vacío | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos excepto teléfono:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: (vacío)<br>   - DNI: 11111111<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1992-03-10<br>   - Email: test.empty.phone@example.com<br>   - Confirmar email: test.empty.phone@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar comportamiento del sistema | Teléfono: (vacío), resto de datos válidos | El sistema procesa el registro sin validación estricta de teléfono o muestra mensaje específico | Media | P2 |
+| TC-011 | Registro con DNI Existente | Verificar que el sistema valida DNI duplicados y muestra mensaje de error específico | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos pero DNI existente:<br>   - Nombres: Existing<br>   - Apellido: User<br>   - Teléfono: 3815555888<br>   - DNI: 94555555<br>   - Email: existing.user@example.com<br>   - Confirmar email: existing.user@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error específico | DNI: 94555555 (existente), Nombres: Existing, Apellido: User, Teléfono: 3815555888, Email: existing.user@example.com | El sistema debe rechazar el registro y mostrar mensaje "Ya existe un usuario registrado con ese DNI" | Alta | P1 |
+| TC-012 | Verificación de Precondiciones de Registro | Verificar que la página de registro está disponible y carga correctamente | Acceso a internet y navegador web | 1. Navegar a https://vps-3696213-x.dattaweb.com/auth/registerUser<br>2. Verificar que la página carga correctamente<br>3. Verificar que el formulario de registro es visible<br>4. Verificar que todos los campos requeridos están presentes<br>5. Verificar que el botón 'Registrarse' está disponible | https://vps-3696213-x.dattaweb.com/auth/registerUser | La página de registro debe cargar correctamente con todos los elementos del formulario visibles y funcionales | Crítica | P1 |
+
+### Resumen de Cobertura
+- **Total de casos**: 12
+- **Login**: 7 casos (TC-001 a TC-007)
+- **Registro**: 5 casos (TC-008 a TC-012)
+- **Casos críticos**: 8 (P1)
+- **Casos medios**: 4 (P2)
+
+### Criterios de Severidad
+- **Crítica**: Funcionalidad core, seguridad, precondiciones del sistema
+- **Alta**: Validaciones de negocio importantes
+- **Media**: Validaciones de formulario, UX
+

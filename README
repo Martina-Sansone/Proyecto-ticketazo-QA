@@ -7,6 +7,9 @@ Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema
 - Automatizar casos funcionales críticos con Cypress.
 - Aplicar buenas prácticas de reporte de defectos (Trello).
 
+## 📋 Gestión del Proyecto
+- **Tablero Trello:** [Challenge Testing Grupo 5](https://trello.com/b/4IRJCob2/challenge-testing-grupo-5)
+
 ---
 
 ## 🌐 Entornos de Prueba
@@ -86,23 +89,23 @@ npm run test                  # Comando estándar para CI/CD
 ```
 cypress/
 ├── e2e/                     # Tests end-to-end
-│   ├── 01_login.spec.cy.js     # Autenticación
-│   ├── 02_events.spec.cy.js    # Gestión de eventos
-│   ├── 03_tickets.spec.cy.js   # Compra de tickets
-│   ├── 04_payments.spec.cy.js  # Proceso de pago
-│   └── 05_admin.spec.cy.js     # Funciones administrativas
+│   ├── 01_login.spec.cy.js     # Tests de autenticación (Login)
+│   └── 02_register.spec.cy.js  # Tests de registro de usuario
 ├── fixtures/                # Datos de prueba
-│   ├── users.json             # Usuarios de prueba
-│   ├── events.json            # Eventos de prueba
-│   └── payments.json          # Datos de pago
+│   ├── jou/                    # Datos específicos del usuario
+│   │   └── registerData.json      # Datos para tests de registro
+│   └── test-data/             # Datos compartidos
+│       ├── users.json            # Usuarios de prueba
+│       └── events.json           # Eventos de prueba
 ├── support/                 # Configuración y comandos
 │   ├── commands.js            # Comandos personalizados
 │   ├── e2e.js                # Configuración global
 │   └── page-objects/          # Page Object Model
-│       ├── LoginPage.js
-│       ├── EventsPage.js
-│       └── PaymentPage.js
-└── screenshots/             # Capturas automáticas (fallos)
+│       ├── LoginPage.js          # Page Object para login
+│       └── RegisterPage.js       # Page Object para registro
+├── screenshots/             # Capturas automáticas (fallos)
+├── videos/                  # Videos de ejecución
+└── reports/                 # Reportes de ejecución
 ```
 
 ---
@@ -132,8 +135,8 @@ cypress/
 
 ### 1️⃣ Plan de Pruebas
 - **Formato**: Excel/Google Sheets
-- **Ubicación**: [Enlace al plan de pruebas]
-- **Responsable**: [Asignar integrante]
+- **Ubicación**: [Plan de Pruebas - Google Sheets](https://docs.google.com/spreadsheets/d/1rgYoSy1TpR3NU_Uma1GmQyisZ0cAaGA9-KmyYlWs6jA/edit?gid=1737084926#gid=1737084926)
+- **Responsable**: Equipo colaborativo
 
 ### 2️⃣ Automatización Cypress
 - **Repositorio**: Este repositorio público
@@ -169,7 +172,7 @@ Cada tarjeta debe incluir:
 git clone [repositorio]
 npm install
 cp .env.example .env
-npm run cypress:open  # Verificar que funciona
+npm run cypress:open
 ```
 
 ### 2. Desarrollo Colaborativo
@@ -184,7 +187,7 @@ npm run cypress:open  # Verificar que funciona
 
 ---
 
-## 📅 Cronograma Sugerido
+## 📅 Cronograma
 
 ### Semana 1: Preparación
 - [ ] Configuración del entorno (todos)
@@ -201,7 +204,7 @@ npm run cypress:open  # Verificar que funciona
 - [ ] Documentación de bugs encontrados
 - [ ] Preparación de entrega final
 
-**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2025 – 23:59h (GMT-3)**
+**📅 FECHA LÍMITE: Domingo 21 de Septiembre de 2024 – 23:59h (GMT-3)**
 
 ---
 
@@ -234,7 +237,7 @@ npm run test
 ## 🆘 Soporte y Dudas
 
 - **Canal Discord**: Soporte del curso
-- **Profesor**: Gabriel (arrobar en Discord)
+- **Profesor**: Gabriel
 - **Documentación Cypress**: https://docs.cypress.io/
 
 ---
@@ -292,8 +295,6 @@ Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress*
 - **Validar asiento cargado** → Que aparezca número de butaca/ubicación
 - **Transferir entrada** → Ingresar mail, confirmar y ver cambio de estado
 
-#### 👤 **Jouni**
-- **Escanear QR** → Probar lectura con librerías JS
 
 #### 👤 **Nicolas Aguero**
 - **Buscador y filtros** → Probar búsqueda por nombre, fecha, categoría, cercanos, provincia y limpiar filtros
@@ -311,4 +312,81 @@ Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress*
 - Automatizar casos funcionales críticos con Cypress
 - Aplicar buenas prácticas de automatización (Page Objects, comandos custom, fixtures)
 - Implementar casos E2E según distribución de tareas del equipo
+
+---
+
+## 📋 Plan de Pruebas Detallado
+
+**📊 Documento completo:** [Plan de Pruebas - Google Sheets](https://docs.google.com/spreadsheets/d/1rgYoSy1TpR3NU_Uma1GmQyisZ0cAaGA9-KmyYlWs6jA/edit?gid=1737084926#gid=1737084926)
+
+### Suite Login y Register
+
+| ID | Título del Caso | Descripción/Objetivo | Precondiciones | Pasos | Datos de Prueba | Resultado Esperado | Severidad | Prioridad |
+|---|---|---|---|---|---|---|---|---|
+| TC-001 | Login Administrador Exitoso | Verificar que el administrador puede acceder al sistema con credenciales válidas | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar redirección al dashboard administrativo | Email: admin@admin.com, Contraseña: admin | El sistema debe autenticar al usuario y redirigir al dashboard administrativo. Se debe mostrar un mensaje de bienvenida o el nombre del usuario logueado. | Crítica | P1 |
+| TC-002 | Login con Email Inválido | Verificar que el sistema rechaza credenciales con email inválido | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: usuario@invalido.com<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar que permanece en página de login<br>7. Verificar mensaje de error | Email: usuario@invalido.com, Contraseña: admin | El sistema debe rechazar el login, mostrar mensaje de error y permanecer en la página de login | Crítica | P1 |
+| TC-003 | Login con Password Incorrecta | Verificar que el sistema rechaza credenciales con password incorrecta | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Ingresar contraseña: passwordIncorrecto<br>5. Hacer clic en 'Ingresar'<br>6. Verificar que permanece en página de login<br>7. Verificar mensaje de error | Email: admin@admin.com, Contraseña: passwordIncorrecto | El sistema debe rechazar el login, mostrar mensaje de error y permanecer en la página de login | Crítica | P1 |
+| TC-004 | Validación de Email Vacío | Verificar que el sistema valida campo email como obligatorio | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Dejar email vacío<br>4. Ingresar contraseña: admin<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de campo requerido | Email: (vacío), Contraseña: admin | El sistema debe validar que el email es requerido y mostrar indicación de campo obligatorio | Media | P2 |
+| TC-005 | Validación de Password Vacía | Verificar que el sistema valida campo password como obligatorio | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Ingresar email: admin@admin.com<br>4. Dejar password vacía<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de campo requerido | Email: admin@admin.com, Contraseña: (vacía) | El sistema debe validar que la password es requerida y mostrar indicación de campo obligatorio | Media | P2 |
+| TC-006 | Validación de Ambos Campos Vacíos | Verificar que el sistema valida ambos campos como obligatorios cuando están vacíos | Sistema disponible en https://vps-3696213-x.dattaweb.com/ | 1. Navegar a la URL del sistema<br>2. Hacer clic en 'Iniciar Sesión' o 'Login'<br>3. Dejar email vacío<br>4. Dejar password vacía<br>5. Hacer clic en 'Ingresar'<br>6. Verificar validación de ambos campos requeridos | Email: (vacío), Contraseña: (vacía) | El sistema debe validar que ambos campos son requeridos y mostrar indicaciones correspondientes | Media | P2 |
+| TC-007 | Verificación de Precondiciones del Sistema | Verificar que el sistema está disponible y carga correctamente | Acceso a internet y navegador web | 1. Navegar a https://vps-3696213-x.dattaweb.com/<br>2. Verificar que la página carga correctamente<br>3. Verificar que el título contiene 'Ticketazo'<br>4. Verificar que el body existe y es visible | URL: https://vps-3696213-x.dattaweb.com/ | El sistema debe cargar correctamente, mostrar el título 'Ticketazo' y todos los elementos básicos | Crítica | P1 |
+| TC-008 | Registro de Usuario Exitoso | Verificar que un usuario puede registrarse exitosamente con datos válidos | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Usuario<br>   - Apellido: Test<br>   - Teléfono: 3815678901<br>   - DNI: (único basado en timestamp)<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1995-01-15<br>   - Email: test.user.{timestamp}@example.com<br>   - Confirmar email: (mismo email)<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar resultado exitoso o mensaje específico | Datos únicos generados dinámicamente | El usuario debe registrarse exitosamente o mostrar mensaje específico si hay conflicto | Crítica | P1 |
+| TC-009 | Registro con Emails Diferentes | Verificar que el sistema procesa registro cuando los emails no coinciden (sin validación estricta) | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815555555<br>   - DNI: 87654321<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1990-05-20<br>   - Email: test.user@example.com<br>   - Confirmar email: different.email@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar que se procesa sin validación estricta | Email: test.user@example.com, Confirmar email: different.email@example.com | El sistema procesa el registro sin validar que los emails coincidan, o muestra mensaje específico si hay conflicto | Media | P2 |
+| TC-010 | Registro con Teléfono Vacío | Verificar el comportamiento del sistema cuando el teléfono está vacío | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos excepto teléfono:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: (vacío)<br>   - DNI: 11111111<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1992-03-10<br>   - Email: test.empty.phone@example.com<br>   - Confirmar email: test.empty.phone@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar comportamiento del sistema | Teléfono: (vacío), resto de datos válidos | El sistema procesa el registro sin validación estricta de teléfono o muestra mensaje específico | Media | P2 |
+| TC-011 | Registro con DNI Existente | Verificar que el sistema valida DNI duplicados y muestra mensaje de error específico | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos pero DNI existente:<br>   - Nombres: Existing<br>   - Apellido: User<br>   - Teléfono: 3815555888<br>   - DNI: 94555555<br>   - Email: existing.user@example.com<br>   - Confirmar email: existing.user@example.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error específico | DNI: 94555555 (existente), Nombres: Existing, Apellido: User, Teléfono: 3815555888, Email: existing.user@example.com | El sistema debe rechazar el registro y mostrar mensaje "Ya existe un usuario registrado con ese DNI" | Alta | P1 |
+| TC-012 | Verificación de Precondiciones de Registro | Verificar que la página de registro está disponible y carga correctamente | Acceso a internet y navegador web | 1. Navegar a https://vps-3696213-x.dattaweb.com/auth/registerUser<br>2. Verificar que la página carga correctamente<br>3. Verificar que el formulario de registro es visible<br>4. Verificar que todos los campos requeridos están presentes<br>5. Verificar que el botón 'Registrarse' está disponible | https://vps-3696213-x.dattaweb.com/auth/registerUser | La página de registro debe cargar correctamente con todos los elementos del formulario visibles y funcionales | Crítica | P1 |
+| TC-013 | Validación de Contraseña Muy Corta | Verificar que el sistema valida contraseñas con menos de 8 caracteres | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815666777<br>   - DNI: 44444444<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1994-04-15<br>   - Email: test.short.password@example.com<br>   - Confirmar email: test.short.password@example.com<br>   - Password: Pass1!<br>   - Confirmar password: Pass1!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Password: Pass1! (6 caracteres) | El sistema debe rechazar la contraseña y mostrar mensaje de error sobre longitud mínima | Alta | P1 |
+| TC-014 | Validación de Contraseña sin Mayúsculas | Verificar que el sistema valida contraseñas sin letras mayúsculas | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815777888<br>   - DNI: 55555555<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1991-08-22<br>   - Email: test.no.uppercase@example.com<br>   - Confirmar email: test.no.uppercase@example.com<br>   - Password: password123!<br>   - Confirmar password: password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Password: password123! (sin mayúsculas) | El sistema debe rechazar la contraseña y mostrar mensaje de error sobre requisito de mayúsculas | Alta | P1 |
+| TC-015 | Validación de Contraseña sin Minúsculas | Verificar que el sistema valida contraseñas sin letras minúsculas | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815888999<br>   - DNI: 66666666<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1989-11-30<br>   - Email: test.no.lowercase@example.com<br>   - Confirmar email: test.no.lowercase@example.com<br>   - Password: PASSWORD123!<br>   - Confirmar password: PASSWORD123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Password: PASSWORD123! (sin minúsculas) | El sistema debe rechazar la contraseña y mostrar mensaje de error sobre requisito de minúsculas | Alta | P1 |
+| TC-016 | Validación de Contraseña sin Números | Verificar que el sistema valida contraseñas sin números | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815999000<br>   - DNI: 77777777<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1987-02-14<br>   - Email: test.no.number@example.com<br>   - Confirmar email: test.no.number@example.com<br>   - Password: Password!<br>   - Confirmar password: Password!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Password: Password! (sin números) | El sistema debe rechazar la contraseña y mostrar mensaje de error sobre requisito de números | Alta | P1 |
+| TC-017 | Validación de Contraseña sin Símbolos | Verificar que el sistema valida contraseñas sin símbolos especiales | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815000111<br>   - DNI: 88888888<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1985-06-18<br>   - Email: test.no.symbol@example.com<br>   - Confirmar email: test.no.symbol@example.com<br>   - Password: Password123<br>   - Confirmar password: Password123<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Password: Password123 (sin símbolos) | El sistema debe rechazar la contraseña y mostrar mensaje de error sobre requisito de símbolos | Alta | P1 |
+| TC-018 | Validación de Email sin Símbolo @ | Verificar que el sistema valida emails con formato inválido sin símbolo @ | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815111222<br>   - DNI: 99999999<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1993-09-25<br>   - Email: test.email.invalid.com<br>   - Confirmar email: test.email.invalid.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Email: test.email.invalid.com (sin @) | El sistema debe rechazar el email y mostrar mensaje de error sobre formato inválido | Alta | P1 |
+| TC-019 | Validación de Email sin Dominio | Verificar que el sistema valida emails con formato inválido sin dominio | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815222333<br>   - DNI: 10101010<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1992-12-03<br>   - Email: test.user@<br>   - Confirmar email: test.user@<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Email: test.user@ (sin dominio) | El sistema debe rechazar el email y mostrar mensaje de error sobre formato inválido | Alta | P1 |
+| TC-020 | Validación de Email Vacío en Registro | Verificar que el sistema valida campo email como obligatorio en registro | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos excepto email:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815333444<br>   - DNI: 20202020<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1990-07-17<br>   - Email: (vacío)<br>   - Confirmar email: (vacío)<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Email: (vacío) | El sistema debe validar que el email es requerido y mostrar indicación de campo obligatorio | Media | P2 |
+| TC-021 | Validación de Confirmación Email Vacía | Verificar que el sistema valida campo confirmar email como obligatorio | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815444555<br>   - DNI: 30303030<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1988-03-28<br>   - Email: test.confirm.empty@example.com<br>   - Confirmar email: (vacío)<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Confirmar email: (vacío) | El sistema debe validar que la confirmación de email es requerida y mostrar indicación correspondiente | Media | P2 |
+| TC-022 | Validación de Email con Caracteres Especiales Inválidos | Verificar que el sistema valida emails con caracteres especiales inválidos | Sistema disponible en https://vps-3696213-x.dattaweb.com/auth/registerUser | 1. Navegar a /auth/registerUser<br>2. Completar formulario con datos válidos:<br>   - Nombres: Test<br>   - Apellido: User<br>   - Teléfono: 3815555666<br>   - DNI: 40404040<br>   - Provincia: Buenos Aires<br>   - Ciudad: La Plata<br>   - Fecha nacimiento: 1986-11-12<br>   - Email: test..email@exam ple.com<br>   - Confirmar email: test..email@exam ple.com<br>   - Password: Password123!<br>   - Confirmar password: Password123!<br>3. Hacer clic en 'Registrarse'<br>4. Verificar mensaje de error | Email: test..email@exam ple.com (doble punto y espacios) | El sistema debe rechazar el email y mostrar mensaje de error sobre caracteres inválidos | Alta | P1 |
+
+### Resumen de Cobertura
+- **Total de casos**: 22
+- **Login**: 7 casos (TC-001 a TC-007)
+- **Registro**: 15 casos (TC-008 a TC-022)
+- **Casos críticos**: 8 (P1)
+- **Casos altos**: 9 (P1)
+- **Casos medios**: 5 (P2)
+
+### Criterios de Severidad
+- **Crítica**: Funcionalidad core, seguridad, precondiciones del sistema
+- **Alta**: Validaciones de negocio importantes  
+- **Media**: Validaciones de formulario, UX
+
+---
+
+## 🐛 Bugs Identificados Durante Testing
+
+Durante la ejecución de las pruebas automatizadas se identificaron los siguientes bugs en el sistema:
+
+### 🔍 **BUG-001: Validación de Email Insuficiente**
+
+**Descripción:** El sistema permite registrar usuarios con emails que contienen caracteres especiales inválidos según el estándar RFC 5322.
+
+**Caracteres inválidos detectados que acepta el sistema:**
+- `*` (asterisco) - Ejemplo: `test*user@example.com`
+- `/` (slash) - Ejemplo: `test/user@example.com`  
+- `#` (numeral) - Ejemplo: `test#user@example.com`
+- `$` (dólar) - Ejemplo: `test$user@example.com`
+
+**Impacto:**
+- Datos inválidos almacenados en base de datos
+- Posibles problemas en envío de emails de confirmación
+- Incumplimiento del estándar RFC 5322 para direcciones de email
+
+**Severidad:** Media | **Prioridad:** P2
+
+**Casos de prueba relacionados:** TC-018, TC-019, TC-022 + Test específico de caracteres especiales
+
+**Recomendación:** Implementar validación completa RFC 5322 que rechace caracteres especiales no permitidos en direcciones de email.
+
+**Evidencia:** Ver archivo `cypress/e2e/03_email_special_chars.spec.cy.js`
+
+---
 

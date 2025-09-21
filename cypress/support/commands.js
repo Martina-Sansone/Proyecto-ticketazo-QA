@@ -21,15 +21,15 @@ Cypress.Commands.add('loginAsAdmin', () => {
     .first()
     .click();
   
-  // Ingresar credenciales
-  cy.get('input[type="email"], input[name="email"], input[placeholder*="email"]')
+  // Ingresar credenciales usando selectores data-cy
+  cy.get('[data-cy="input-email"]')
     .type(Cypress.env('admin_email'));
   
-  cy.get('input[type="password"], input[name="password"], input[placeholder*="password"]')
+  cy.get('[data-cy="input-password"]')
     .type(Cypress.env('admin_password'));
   
   // Hacer clic en botón de submit
-  cy.get('button[type="submit"], input[type="submit"], button:contains("Ingresar"), button:contains("Login")')
+  cy.get('[data-cy="btn-login"]')
     .click();
   
   // Verificar que el login fue exitoso

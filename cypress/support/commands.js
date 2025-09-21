@@ -301,3 +301,35 @@ beforeEach(() => {
   cy.intercept('POST', '**/api/**').as('apiPost');
   cy.intercept('GET', '**/api/**').as('apiGet');
 });
+
+
+//Login usuario normal test Martina 
+
+Cypress.Commands.add('loginAsMartina', () => {
+  cy.log('🔐 Iniciando sesión como usuario normal test martina');
+
+  // 1. Ir al home
+  cy.visit('/');
+
+  // 2. Ir al formulario de login (ajusta el selector según tu app)
+  cy.get('a[href*="login"], button:contains("Login"), a:contains("Iniciar"), button:contains("Ingresar")')
+    .first()
+    .click();
+
+  // 3. Completar credenciales
+  cy.get('input[type="email"], input[name="email"], input[placeholder*="email"]')
+    .clear()
+    .type('pabloymar392@gmail.com');
+
+  cy.get('input[type="password"], input[name="password"], input[placeholder*="password"]')
+    .clear()
+    .type('Test123!!', { log: false });
+
+  // 4. Confirmar login
+  cy.get('button[type="submit"], input[type="submit"], button:contains("Ingresar"), button:contains("Login")')
+    .click();
+
+  // 5. Validar que no sigamos en /login
+  cy.url().should('not.include', 'login');
+  cy.log('✅ Login exitoso con Pablo');
+});

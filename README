@@ -356,6 +356,37 @@ Automatización end-to-end del sistema **Ticketazo** desarrollada con **Cypress*
 
 ### Criterios de Severidad
 - **Crítica**: Funcionalidad core, seguridad, precondiciones del sistema
-- **Alta**: Validaciones de negocio importantes
+- **Alta**: Validaciones de negocio importantes  
 - **Media**: Validaciones de formulario, UX
+
+---
+
+## 🐛 Bugs Identificados Durante Testing
+
+Durante la ejecución de las pruebas automatizadas se identificaron los siguientes bugs en el sistema:
+
+### 🔍 **BUG-001: Validación de Email Insuficiente**
+
+**Descripción:** El sistema permite registrar usuarios con emails que contienen caracteres especiales inválidos según el estándar RFC 5322.
+
+**Caracteres inválidos detectados que acepta el sistema:**
+- `*` (asterisco) - Ejemplo: `test*user@example.com`
+- `/` (slash) - Ejemplo: `test/user@example.com`  
+- `#` (numeral) - Ejemplo: `test#user@example.com`
+- `$` (dólar) - Ejemplo: `test$user@example.com`
+
+**Impacto:**
+- Datos inválidos almacenados en base de datos
+- Posibles problemas en envío de emails de confirmación
+- Incumplimiento del estándar RFC 5322 para direcciones de email
+
+**Severidad:** Media | **Prioridad:** P2
+
+**Casos de prueba relacionados:** TC-018, TC-019, TC-022 + Test específico de caracteres especiales
+
+**Recomendación:** Implementar validación completa RFC 5322 que rechace caracteres especiales no permitidos en direcciones de email.
+
+**Evidencia:** Ver archivo `cypress/e2e/03_email_special_chars.spec.cy.js`
+
+---
 

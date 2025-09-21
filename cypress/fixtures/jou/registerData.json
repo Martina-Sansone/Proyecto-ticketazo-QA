@@ -208,6 +208,58 @@
       "confirmEmail": "test..email@exam ple.com",
       "password": "Password123!",
       "confirmPassword": "Password123!"
+    },
+    "emailWithAsterisk": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815666777",
+      "dni": "50505050",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1984-03-20",
+      "email": "test*user@example.com",
+      "confirmEmail": "test*user@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "emailWithSlash": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815777888",
+      "dni": "60606060",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1983-07-11",
+      "email": "test/user@example.com",
+      "confirmEmail": "test/user@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "emailWithHash": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815888999",
+      "dni": "70707070",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1982-12-05",
+      "email": "test#user@example.com",
+      "confirmEmail": "test#user@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
+    },
+    "emailWithDollar": {
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "3815999000",
+      "dni": "80808080",
+      "province": "Buenos Aires",
+      "city": "La Plata",
+      "birthDate": "1981-05-30",
+      "email": "test$user@example.com",
+      "confirmEmail": "test$user@example.com",
+      "password": "Password123!",
+      "confirmPassword": "Password123!"
     }
   },
   
@@ -225,8 +277,10 @@
     "noNumber": "La contraseña debe incluir números",
     "noSymbol": "La contraseña debe incluir símbolos",
     "invalidPassword": "La contraseña no cumple con los requisitos",
-    "invalidEmailFormat": "Ingrese un email válido",
-    "requiredEmail": "Este campo es obligatorio",
-    "emailMismatchValidation": "Los emails no coinciden"
+          "invalidEmailFormat": "Ingrese un email válido",
+      "requiredEmail": "Este campo es obligatorio",
+      "emailMismatchValidation": "Los emails no coinciden",
+      "specialCharsNotAllowed": "Email contiene caracteres no válidos",
+      "invalidSpecialChars": "Formato de email inválido"
   }
 } 

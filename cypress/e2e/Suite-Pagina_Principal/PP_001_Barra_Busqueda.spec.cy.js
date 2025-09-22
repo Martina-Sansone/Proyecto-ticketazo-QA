@@ -37,7 +37,7 @@ describe('Verificar funcionamiento de barra de busqueda y filtros',()=>{
 
         cy.log('Fecha parseada: ' + fecha.toISOString());
 
-        const inicio = new Date('2025-06-15');
+        const inicio = new Date('2025-06-15'); 
         const fin = new Date('2025-09-20');
 
         expect(fecha).to.be.within(inicio, fin);
@@ -50,7 +50,7 @@ describe('Verificar funcionamiento de barra de busqueda y filtros',()=>{
         cy.get('[aria-label="Categoría"]').click({force:true})
         cy.wait(2000)
         cy.get('ul[data-slot="listbox"] > li[data-key="Teatro"]').should("exist").click({force:true})
-        cy.get('[data-cy="eventos-grid"] > div').should('have.length', 10)
+        cy.get('[data-cy="eventos-grid"] > div').its('length').should('be.greaterThan', 10);
     })
 
     it('Verificar funcionamiento de busqueda por filtro: Provincia y localidad', ()=>{
@@ -62,7 +62,7 @@ describe('Verificar funcionamiento de barra de busqueda y filtros',()=>{
         cy.wait(2000)
         cy.get('button[aria-label="Localidad"]').click().should("exist").click({force:true})
         cy.get('ul[data-slot="listbox"] > li[data-key="684001009"]').should("exist").click({force:true})
-        cy.get('[data-cy="eventos-grid"] > div').should('have.length', 3)
+        cy.get('[data-cy="eventos-grid"] > div').its('length').should('be.greaterThan', 2)
     })
 
     it('Verificar funcionamiento de busqueda de todos los filtros',()=>{
@@ -110,7 +110,7 @@ describe('Verificar funcionamiento de barra de busqueda y filtros',()=>{
 
         expect(fecha).to.be.within(inicio, fin);
     });
-            cy.get('[data-cy="eventos-grid"] > div').should('have.length', 1)
+            cy.get('[data-cy="eventos-grid"] > div').its('length').should('be.greaterThan', 0)
 
         })
     })

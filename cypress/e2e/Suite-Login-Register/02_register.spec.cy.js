@@ -1,4 +1,4 @@
-import RegisterPage from '../support/page-objects/RegisterPage.js';
+import RegisterPage from '../../support/page-objects/RegisterPage.js';
 
 describe('TC-REG: Registro de Usuario', () => {
   let registerPage;

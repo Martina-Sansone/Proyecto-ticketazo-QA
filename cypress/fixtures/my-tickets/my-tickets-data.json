@@ -1,0 +1,23 @@
+{
+	"expectedTitles": [
+		"Esperando la Carroza",
+		"Grido Tech Advance",
+		"Tesis Cervantes",
+		"Evento Test",
+		"Q lokura",
+		"Test 1234"
+	],
+	"testTicket": {
+		"eventId": 4,
+		"ticketId": 2564,
+		"title": "Esperando la Carroza",
+		"location": "Ubicacion: F4 C11"
+	},
+	"transferData": {
+		"email": "alt.jl-4oo3vymo@yopmail.com"
+	},
+	"viewports": {
+		"mobile": "samsung-s10",
+		"desktop": "macbook-15"
+	}
+}

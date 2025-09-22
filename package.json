@@ -21,6 +21,7 @@
   "license": "ISC",
   "description": "Automatización E2E de Ticketazo con Cypress - Challenge QA",
   "devDependencies": {
-    "cypress": "^15.2.0"
+    "cypress": "^15.2.0",
+    "cypress-file-upload": "^5.0.8"
   }
 }

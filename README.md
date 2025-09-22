@@ -44,7 +44,7 @@ npm install
 
 # 4. Configurar variables de entorno
 cp .env
-# Editar .env si es necesario (normalmente no hace falta) se compartio por WhatsApp
+# Editar .env si es necesario (normalmente no hace falta) se compartio por WhatsApp y Discord
 ```
 
 ### 🚀 Comandos Disponibles

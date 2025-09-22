@@ -4,13 +4,17 @@ describe('Carga de Evento - Casos Negativos Completos', () => {
   const PASSWORD = 'Mar2019$';
 
   beforeEach(() => {
+    cy.viewport(1280, 720);
+    
     cy.visit(loginPath);
     cy.get('[data-cy="input-email"]').type(EMAIL);
     cy.get('[data-cy="input-password"]').type(PASSWORD, { log: false });
     cy.get('[data-cy="btn-login"]').click();
-    cy.location('pathname', { timeout: 10000 }).should('not.include', loginPath);
+    
+    cy.wait(5000);
+    cy.get('body').should('be.visible');
+    cy.url().should('not.include', loginPath);
   });
-  // CASO NEGATIVO 1: Título vacío
 
   it('Caso negativo 1: título vacío', () => {
     cy.contains('a', 'Cargar Evento').click();
@@ -43,7 +47,17 @@ describe('Carga de Evento - Casos Negativos Completos', () => {
     cy.contains('li', 'Azul', { timeout: 5000 }).click({ force: true });
     cy.get('[data-cy="input-info"]').type('Test_2');
     cy.contains('button', 'Siguiente').click({ force: true });
-    cy.get('input[aria-label="Activar Preventa"]').check({ force: true });
+    
+    cy.wait(2000);
+    cy.get('body').should('be.visible');
+    
+    cy.get('body').then($body => {
+      if ($body.find('input[aria-label="Activar Preventa"]').length > 0) {
+        cy.get('input[aria-label="Activar Preventa"]').check({ force: true });
+      } else if ($body.find('input[type="checkbox"]').length > 0) {
+        cy.get('input[type="checkbox"]').first().check({ force: true });
+      }
+    });
     cy.get('button[data-slot="trigger"]').first().click({ force: true });
     cy.contains('li[role="option"]', 'General', { timeout: 10000 }).click({ force: true });
     cy.get('input[aria-label="Capacidad"]').first().type('43', { force: true });

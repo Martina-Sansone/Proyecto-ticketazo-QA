@@ -1,4 +1,4 @@
-import LoginPage from '../support/page-objects/LoginPage.js';
+import LoginPage from '../../support/page-objects/LoginPage.js';
 
 describe('TC-001: Login Administrador', () => {
   let loginPage;

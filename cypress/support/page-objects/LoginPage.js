@@ -1,21 +1,21 @@
 class LoginPage {
   
-    get loginButton() {
+  get loginButton() {
     return cy.get('a[href*="login"], button:contains("Login"), a:contains("Iniciar"), button:contains("Ingresar")').first();
   }
-
+  
   get emailInput() {
     return cy.get('[data-cy="input-email"]');
   }
-
+  
   get passwordInput() {
     return cy.get('[data-cy="input-password"]');
   }
-
+  
   get submitButton() {
     return cy.get('[data-cy="btn-login"]');
   }
-
+  
   get errorMessage() {
     return cy.get('[data-cy="error-message"]');
   }

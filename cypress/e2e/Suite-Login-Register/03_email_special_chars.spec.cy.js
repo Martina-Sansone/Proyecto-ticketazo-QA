@@ -144,9 +144,9 @@ describe('🐛 BUG: Validación de Caracteres Especiales en Email', () => {
       cy.log('💡 RECOMENDACIÓN:');
       cy.log('   • Implementar validación RFC 5322 completa');
       cy.log('   • Rechazar caracteres especiales inválidos');
-                  cy.log('   • Mostrar mensajes de error específicos');
-
-            expect(true).to.be.true;
+      cy.log('   • Mostrar mensajes de error específicos');
+      
+      expect(true).to.be.true;
     });
   });
 

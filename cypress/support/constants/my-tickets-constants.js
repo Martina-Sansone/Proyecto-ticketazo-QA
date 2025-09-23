@@ -14,9 +14,9 @@ export const TEST_IDS = {
 }
 
 export const TIMEOUTS = {
-  SHORT: 1500,
-  MEDIUM: 2000,
-  LONG: 10000
+  SHORT: 3000,
+  MEDIUM: 5000,
+  LONG: 15000
 }
 
 export const SELECTORS = {

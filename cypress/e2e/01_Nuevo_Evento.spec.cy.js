@@ -67,15 +67,9 @@ describe('Carga de Evento', () => {
     cy.wait(2000);
     
     // Verificar si hay opciones disponibles y seleccionar la primera, sino continuar
-    cy.get('body').then($body => {
-      if ($body.find('li[role="option"]').length > 0) {
-        cy.get('li[role="option"]').first().click({ force: true });
-      } else {
-        // Si no hay opciones, cerrar el dropdown y continuar
-        cy.get('body').click(0, 0);
-        cy.log('Dropdown de lugar está vacío - continuando sin selección');
-      }
-    });
+    // Seleccionar "Otro" en el dropdown de "Lugar del Evento" (funciona con usuario regular)
+    cy.contains('li[role="option"]', 'Otro').click({ force: true });
+    cy.log('Seleccionada opción "Otro" en lugar del evento');
     cy.get('[data-cy="input-nombre-lugar"]').type('Rock');
     cy.get('[data-cy="input-calle-lugar"]').type('Laguna');
     cy.get('[data-cy="input-altura-lugar"]').type('123');

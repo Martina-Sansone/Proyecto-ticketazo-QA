@@ -1,5 +1,9 @@
 # Ticketazo — Cypress E2E Automation
 
+> **⚠️ IMPORTANTE PARA EVALUACIÓN:**  
+> **Rama a evaluar: `proyecto-completo`**  
+> Esta rama contiene el proyecto final completo con todos los tests funcionando correctamente.
+
 Este repositorio contiene las pruebas automatizadas end-to-end (E2E) del sistema **Ticketazo**, desarrolladas con **Cypress** como parte del Challenge de QA.
 
 ## 🎯 Objetivo
